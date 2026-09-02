@@ -92,6 +92,87 @@ def auto_grid(per_page):
     return best[1], best[2]
 
 
+# 方向分类阈值（宽高比 = width / height）
+ORIENTATION_THRESHOLDS = {
+    "ultra_portrait": 0.6,   # <= 0.6，如 9:16 (0.5625)、9:19.5
+    "portrait": 0.85,         # 0.6 ~ 0.85，如 3:4 (0.75)、2:3
+    "square": 1.15,           # 0.85 ~ 1.15，接近正方形
+    # > 1.15 为 landscape，如 4:3 (1.33)、16:9 (1.78)
+}
+
+ORIENTATION_LABELS = {
+    "ultra_portrait": "超竖版",
+    "portrait": "竖版",
+    "square": "正方形",
+    "landscape": "横版",
+}
+
+
+def get_orientation(img_path):
+    """
+    获取图片方向分类。返回 ultra_portrait / portrait / square / landscape。
+    自动处理 EXIF 旋转。
+    """
+    try:
+        img = Image.open(img_path)
+        img = ImageOps.exif_transpose(img)
+        w, h = img.size
+        img.close()
+        ratio = w / h if h > 0 else 1
+        if ratio <= ORIENTATION_THRESHOLDS["ultra_portrait"]:
+            return "ultra_portrait"
+        elif ratio <= ORIENTATION_THRESHOLDS["portrait"]:
+            return "portrait"
+        elif ratio <= ORIENTATION_THRESHOLDS["square"]:
+            return "square"
+        else:
+            return "landscape"
+    except Exception:
+        return "portrait"  # 读取失败时默认归为竖版
+
+
+def sort_by_orientation(image_paths, secondary_sort="name"):
+    """
+    按图片方向分组排序：同类方向放在一起，组间按数量降序（多的在前），
+    组内按文件名或修改时间排序。这样比例接近的照片连续排列，
+    在统一网格中显示大小一致，不会出现横版特别小的问题。
+    """
+    from collections import defaultdict
+
+    groups = defaultdict(list)
+    for p in image_paths:
+        orientation = get_orientation(p)
+        groups[orientation].append(p)
+
+    # 组内排序
+    for orientation in groups:
+        if secondary_sort == "date":
+            groups[orientation].sort(key=lambda p: p.stat().st_mtime)
+        else:
+            groups[orientation].sort(key=lambda p: p.name.lower())
+
+    # 组间按数量降序（数量多的类别在前），数量相同按方向顺序（超竖→竖→正方→横）
+    orientation_order = ["ultra_portrait", "portrait", "square", "landscape"]
+    sorted_groups = sorted(
+        groups.items(),
+        key=lambda x: (-len(x[1]), orientation_order.index(x[0]) if x[0] in orientation_order else 99)
+    )
+
+    result = []
+    for orientation, paths in sorted_groups:
+        result.extend(paths)
+
+    # 打印分类统计
+    print(f"方向分类: ", end="")
+    parts = []
+    for orientation, paths in sorted_groups:
+        label = ORIENTATION_LABELS.get(orientation, orientation)
+        parts.append(f"{label}{len(paths)}张")
+    print("、".join(parts))
+
+    return result
+
+
 def load_image(path, target_w_px, target_h_px, fit="contain", quality=85):
     """
     加载图片，处理 EXIF 方向，缩放到目标像素尺寸，返回 JPEG 字节。
@@ -260,6 +341,8 @@ def main():
     parser.add_argument("--quality", type=int, default=85, help="JPEG 压缩质量 1-100（默认 85）")
     parser.add_argument("--sort", choices=["name", "date", "none"], default="name",
                         help="图片排序方式：name=按文件名，date=按修改时间，none=保持输入顺序（默认 name）")
+    parser.add_argument("--no-group-by-orientation", action="store_true", default=False,
+                        help="关闭按方向自动分组（默认开启：自动识别超竖/竖/正方/横版，同类放在一起排版）")
 
     args = parser.parse_args()
 
@@ -281,10 +364,15 @@ def main():
         sys.exit(1)
 
     # 排序
-    if args.sort == "name":
-        image_paths.sort(key=lambda p: p.name.lower())
-    elif args.sort == "date":
-        image_paths.sort(key=lambda p: p.stat().st_mtime)
+    if args.no_group_by_orientation:
+        # 不分组，按原排序方式
+        if args.sort == "name":
+            image_paths.sort(key=lambda p: p.name.lower())
+        elif args.sort == "date":
+            image_paths.sort(key=lambda p: p.stat().st_mtime)
+    else:
+        # 默认：按方向分组（同类放在一起），组内按指定方式排序
+        image_paths = sort_by_orientation(image_paths, secondary_sort=args.sort)
 
     print(f"找到 {len(image_paths)} 张图片")
 
