@@ -1,5 +1,5 @@
 ---
-name: photo-layout-pdf
+name: photo-toolbox
 description: 照片处理工具箱，包含三大功能：(1) 将多张照片按网格整齐排列导出 PDF；(2) 将多张照片排列到 Word 文档且每张照片下方预留备注/价格填写空间；(3) 给照片一键批量加文字水印（角标/居中/平铺）用于宣传发布和版权保护。当用户发送多张照片并要求"每页放 X 张""照片排版""排成 PDF""排成 Word""照片下面留空写价格/备注""加水印""打 logo""防盗图""样品水印"等需求时使用。支持手机端和电脑端，用户直接发照片即可。自动识别照片方向（超竖/竖/正方/横版）并同类分组排版。
 ---
 
@@ -211,4 +211,4 @@ python3 <skill_dir>/scripts/add_watermark.py <图片...> --text "水印文字" -
 
 ## 持续改进
 
-用户反馈、版本历史、测试用例和优化流程详见 `references/feedback-and-improvement.md` 和 `references/feedback-log.md`。积累 3 条以上反馈或遇到严重问题时，建议用户说「用达尔文优化 photo-layout-pdf」触发系统性优化。
+用户反馈、版本历史、测试用例和优化流程详见 `references/feedback-and-improvement.md` 和 `references/feedback-log.md`。积累 3 条以上反馈或遇到严重问题时，建议用户说「用达尔文优化 photo-toolbox」触发系统性优化。
