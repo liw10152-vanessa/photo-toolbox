@@ -23,5 +23,9 @@
     "color": "255,255,255",
     "format": "jpeg",
     "max_size": 4000
+  },
+  "id_photo": {
+    "spec": "1寸",
+    "paper": "5寸"
   }
 }

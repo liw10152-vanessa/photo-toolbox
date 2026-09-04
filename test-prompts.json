@@ -103,5 +103,19 @@
     "prompt": "我第一次用这个技能，帮我设置一下默认的排版和水印",
     "expected": "Agent 触发首次引导，依次询问 PDF 排版、Word 排版、水印偏好，将答案保存到 user-preferences.json；用户可跳过用默认值",
     "validation_checks": ["发起引导问题", "覆盖PDF排版/Word排版/水印三组", "生成user-preferences.json", "可跳过用默认"]
+  },
+  {
+    "id": 16,
+    "feature": "id_photo",
+    "prompt": "这张人像照做成一寸证件照，用5寸相纸排版",
+    "expected": "按一寸25x35mm裁切，5寸相纸89x127mm排成3x3=9张可打印图，300dpi",
+    "validation_checks": ["输出排版图", "一寸25x35mm", "5寸纸3x3=9张", "300dpi"]
+  },
+  {
+    "id": 17,
+    "feature": "id_photo",
+    "prompt": "做二寸证件照，相纸用6寸",
+    "expected": "按二寸35x49mm裁切，6寸相纸102x152mm排成2x2=4张可打印图",
+    "validation_checks": ["二寸35x49mm", "6寸纸排版", "行列数正确", "居中排列"]
   }
 ]
