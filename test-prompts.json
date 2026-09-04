@@ -65,7 +65,7 @@
   {
     "id": 10,
     "feature": "watermark",
-    "prompt": "给这几张宣传图右下角加上「© 我的小店」水印",
+    "prompt": "给这几张宣传图右下角加上「© 我的品牌」水印",
     "expected": "每张图右下角加半透明白色带描边文字水印，输出到独立文件夹，原图不变",
     "validation_checks": ["输出到watermarked文件夹", "右下角有水印文字", "原图未被修改", "中文显示正常"]
   },
@@ -93,8 +93,15 @@
   {
     "id": 14,
     "feature": "watermark",
-    "prompt": "这张图右下角斜着放一个「俊杰园林」水印",
+    "prompt": "这张图右下角斜着放一个「我的品牌」水印",
     "expected": "右下角水印文字带旋转角度斜放，深色描边清晰可读",
     "validation_checks": ["右下角区域", "文字有旋转角度", "带描边可读"]
+  },
+  {
+    "id": 15,
+    "feature": "onboarding",
+    "prompt": "我第一次用这个技能，帮我设置一下默认的排版和水印",
+    "expected": "Agent 触发首次引导，依次询问 PDF 排版、Word 排版、水印偏好，将答案保存到 user-preferences.json；用户可跳过用默认值",
+    "validation_checks": ["发起引导问题", "覆盖PDF排版/Word排版/水印三组", "生成user-preferences.json", "可跳过用默认"]
   }
 ]

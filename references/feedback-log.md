@@ -25,6 +25,7 @@
 | v1.3 | 2026-09-03 | 新增 Word 排版（图下留备注）和照片水印（角标/居中/平铺），测试用例扩到12个 |
 | v1.4 | 2026-09-03 | Skill 更名 photo-layout-pdf → photo-toolbox，匹配三功能定位 |
 | v1.5 | 2026-09-03 | 水印升级：默认位置改正中偏下(center-low)；新增角标/居中旋转(--angle)；新增输出长边上限(--max-size 4000 提速)与PNG无损输出(--format png)；测试用例扩到14个 |
+| v2.0 | 2026-09-04 | 开源化改造：新增首次使用引导流程（Agent 连问 PDF 排版/Word 排版/水印偏好，存 user-preferences.json）；删除个性化水印示例；新增 README/LICENSE/.gitignore/user-preferences.json.example；测试用例扩到15个 |
 
 ## 反馈记录
 

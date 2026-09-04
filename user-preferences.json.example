@@ -1,0 +1,27 @@
+{
+  "pdf": {
+    "per_page": 9,
+    "page_size": "a4",
+    "dpi": 200,
+    "fit": "contain",
+    "group_by_orientation": true,
+    "margin": 16,
+    "gap": 3
+  },
+  "word": {
+    "per_page": 6,
+    "note_lines": 2,
+    "photo_width_cm": 5.5,
+    "margin_cm": 1.5
+  },
+  "watermark": {
+    "enabled": false,
+    "text": "",
+    "position": "center-low",
+    "angle": 0,
+    "opacity": 128,
+    "color": "255,255,255",
+    "format": "jpeg",
+    "max_size": 4000
+  }
+}
