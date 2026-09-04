@@ -115,10 +115,12 @@ python3 <skill_dir>/scripts/layout_photos_word.py <图片...> --output <输出.d
 
 | 用户说法 | 模式 | --position |
 |---------|------|-----------|
-| "右下角加个品牌名/署名" | 右下角角标（默认） | bottom-right |
+| "正中间偏下加个水印/默认位置" | 正中偏下（默认） | center-low |
+| "右下角加个品牌名/署名" | 右下角角标 | bottom-right |
 | "正中央盖个章/标机密" | 居中大字 | center |
 | "防盗图/铺满水印/样品图" | 斜向平铺 | tile |
 | 其他角 | 四角 | top-left/top-right/bottom-left |
+| "斜着放/旋转" | 任意位置 + 旋转角度 | 任意 + --angle N |
 
 3. **调用脚本**：
 ```bash
@@ -131,10 +133,13 @@ python3 <skill_dir>/scripts/add_watermark.py <图片...> --text "水印文字" -
 ```
 -t, --text TEXT        水印文字（必填）
 -o, --output-dir DIR   输出文件夹（默认 ./watermarked，不覆盖原图）
---position MODE        bottom-right(默认)/bottom-left/top-right/top-left/center/tile
+--position MODE        center-low(默认，正中偏下)/center/bottom-right/bottom-left/top-right/top-left/tile(平铺)
 --opacity N            不透明度 0-255（默认 128 半透明；平铺建议 60-80）
 --font-size N          字号像素（默认按图片宽度 5% 自适应）
 --color R,G,B          文字颜色（默认白色 255,255,255）
+--angle N              旋转角度（度），角标/居中模式指定即斜放；平铺模式默认 30
+--max-size N           输出长边上限像素（默认 4000，超大图等比缩小提速；0=不缩放保持原分辨率）
+--format jpeg/png      输出格式（默认 jpeg 质量 92；png 无损更清晰、文件更大）
 --suffix TEXT          输出文件名后缀（默认 _wm）
 --quality N            JPEG 质量（默认 92）
 ```

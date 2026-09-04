@@ -82,5 +82,19 @@
     "prompt": "这张图正中央盖个「机密」大字水印",
     "expected": "图片正中央加较大文字「机密」水印",
     "validation_checks": ["水印居中", "字号较大醒目", "文字清晰"]
+  },
+  {
+    "id": 13,
+    "feature": "watermark",
+    "prompt": "这些图加个水印，默认位置就行",
+    "expected": "水印打在正中偏下（center-low：水平居中，垂直约60%处）",
+    "validation_checks": ["水平居中", "垂直位置约60%高度", "中文显示正常"]
+  },
+  {
+    "id": 14,
+    "feature": "watermark",
+    "prompt": "这张图右下角斜着放一个「俊杰园林」水印",
+    "expected": "右下角水印文字带旋转角度斜放，深色描边清晰可读",
+    "validation_checks": ["右下角区域", "文字有旋转角度", "带描边可读"]
   }
 ]
