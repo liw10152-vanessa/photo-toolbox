@@ -27,6 +27,7 @@
 | v1.5 | 2026-09-03 | 水印升级：默认位置改正中偏下(center-low)；新增角标/居中旋转(--angle)；新增输出长边上限(--max-size 4000 提速)与PNG无损输出(--format png)；测试用例扩到14个 |
 | v2.0 | 2026-09-04 | 开源化改造：新增首次使用引导流程（Agent 连问 PDF 排版/Word 排版/水印偏好，存 user-preferences.json）；删除个性化水印示例；新增 README/LICENSE/.gitignore/user-preferences.json.example；测试用例扩到15个 |
 | v2.1 | 2026-09-04 | 新增功能四：证件照排版（layout_id_photo.py，一寸/二寸自动裁切+5寸/6寸相纸排版打印，300dpi）；引导新增证件照偏好；测试用例扩到17个 |
+| v2.2 | 2026-09-06 | 开源传播优化：证件照提升为主打功能并放到首屏；README 新增"局限（Limitations）"章节；SKILL.md 描述补充证件照触发词 |
 
 ## 反馈记录
 
