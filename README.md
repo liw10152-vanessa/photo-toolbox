@@ -20,9 +20,9 @@
 
 一张人像照进来，一张可打印的相纸出去：
 
-![证件照排版效果](docs/preview-id-photo.png)
+![photo-toolbox 工作流](docs/preview-hero.png)
 
-<sub>一寸证件照 × 5 寸相纸（3×3 = 9 张，300dpi）。上图是脚本的真实输出，不是示意图。</sub>
+<sub>左：原始人像照 · 右：脚本真实输出的一寸 × 5 寸相纸排版（3×3 = 9 张，300dpi）。演示图由脚本真实生成，不是示意图。</sub>
 
 ---
 
@@ -49,7 +49,7 @@ photo-toolbox/
 │   ├── layout_photos_word.py     # 功能三：照片排版 Word（带备注行）
 │   └── add_watermark.py          # 功能四：照片加水印
 ├── docs/
-│   └── preview-id-photo.png      # README 首屏预览图（脚本真实输出）
+│   └── preview-hero.png          # README 首屏封面（输入→输出工作流，脚本真实输出）
 ├── references/                   # 反馈与版本记录
 └── test-prompts.json             # 测试基准（17 个典型用例）
 ```
