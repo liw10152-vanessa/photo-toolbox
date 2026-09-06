@@ -31,6 +31,7 @@
 | v2.3 | 2026-09-06 | README 封面升级（参考 readme-guidelines 模板）：居中 header + badges + 导航 + 首屏预览图（docs/preview-id-photo.png，脚本真实输出） |
 | v2.4 | 2026-09-06 | 首屏封面改为输入→输出工作流对比图（docs/preview-hero.png：原始人像→自动裁切排版→可打印证件照），一眼看懂工具用途 |
 | v2.5 | 2026-09-06 | 首屏封面升级为四功能总览（证件照工作流 + PDF/Word/水印三卡片，演示图全部由脚本真实生成）；修复 layout_photos_word.py 对含特殊元数据 JPEG 的 UnrecognizedImageError（PIL 重编码重试） |
+| v2.6 | 2026-09-06 | 多平台兼容升级：支持 Codex CLI、Claude Code、Kimi Code、豆包工作、Marvis、WorkBuddy 共 6 个 Agent 平台；新增 install.sh 一键安装脚本（支持 --link 符号链接模式）；新增 platforms/ 目录含 6 份平台适配文档（安装路径/触发机制/frontmatter 规范/官方来源/验证状态）；README 新增"支持的 Agent 平台"章节与多平台安装指南，Limitations 同步更新各平台验证状态；根目录 SKILL.md 保持不变（name+description frontmatter 天然兼容所有平台），scripts/ 层零改动 |
 
 ## 反馈记录
 
@@ -42,6 +43,7 @@
 | 2026-09-03 | 用户 | 水印想先自己设计（可能走图片水印/自定义样式） | 水印功能 | 待处理 | 等用户提供透明PNG设计稿后叠加；当前支持文字水印 |
 | 2026-09-03 | 用户 | 返回的照片太模糊（疑似预览缩略图误导/输出质量疑虑） | 输出质量 | 已采纳 | v1.5 明确输出为原分辨率（长边≤4000）+JPEG92，新增--format png无损输出；预览图是缩小版故显糊 |
 | 2026-09-03 | 用户 | 生成速度太慢 | 性能 | 已采纳 | v1.5 新增--max-size 4000 长边压缩提速（实测约快3-5倍），0=不缩放保原分辨率 |
+| 2026-09-06 | 用户 | 升级为 codex、Claude code、kimi、豆包、marvis、workbuddy 这些 agents 都能用 | 多平台兼容 | 已采纳 | v2.6 新增 6 平台适配：install.sh 一键安装 + platforms/ 6 份文档 + README 多平台章节；根 SKILL.md 与 scripts/ 零改动 |
 
 ---
 
