@@ -30,6 +30,7 @@
 | v2.2 | 2026-09-06 | 开源传播优化：证件照提升为主打功能并放到首屏；README 新增"局限（Limitations）"章节；SKILL.md 描述补充证件照触发词 |
 | v2.3 | 2026-09-06 | README 封面升级（参考 readme-guidelines 模板）：居中 header + badges + 导航 + 首屏预览图（docs/preview-id-photo.png，脚本真实输出） |
 | v2.4 | 2026-09-06 | 首屏封面改为输入→输出工作流对比图（docs/preview-hero.png：原始人像→自动裁切排版→可打印证件照），一眼看懂工具用途 |
+| v2.5 | 2026-09-06 | 首屏封面升级为四功能总览（证件照工作流 + PDF/Word/水印三卡片，演示图全部由脚本真实生成）；修复 layout_photos_word.py 对含特殊元数据 JPEG 的 UnrecognizedImageError（PIL 重编码重试） |
 
 ## 反馈记录
 

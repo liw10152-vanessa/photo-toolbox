@@ -150,9 +150,26 @@ def layout_grid_word(image_paths, output_path, per_page=6, rows=None, cols=None,
                     run = para.add_run()
                     try:
                         run.add_picture(str(img_path), width=Cm(photo_width_cm))
-                    except Exception as e:
-                        run.add_run(f"[图片加载失败: {img_path.name}]")
-                        print(f"[警告] 图片加载失败: {img_path} - {e}", file=sys.stderr)
+                    except Exception:
+                        # 部分合法 JPEG 带特殊元数据时 python-docx 无法识别图片头，
+                        # 用 PIL 重编码为标准 RGB JPEG 后重试一次
+                        tmp = None
+                        try:
+                            from PIL import Image as PILImage
+                            import tempfile
+                            import os
+                            fd, tmp = tempfile.mkstemp(suffix=".jpg")
+                            os.close(fd)
+                            with PILImage.open(img_path) as im:
+                                im.convert("RGB").save(tmp, "JPEG", quality=92)
+                            run = para.add_run()
+                            run.add_picture(tmp, width=Cm(photo_width_cm))
+                        except Exception as e2:
+                            para.add_run(f"[图片加载失败: {img_path.name}]")
+                            print(f"[警告] 图片加载失败: {img_path} - {e2}", file=sys.stderr)
+                        finally:
+                            if tmp and os.path.exists(tmp):
+                                os.unlink(tmp)
 
                     # 备注空白行
                     add_note_lines(cell, note_lines)
