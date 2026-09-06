@@ -1,6 +1,32 @@
-# photo-toolbox
+<p align="center">
+  <h1 align="center">🪪 photo-toolbox</h1>
+  <p align="center">让 AI 帮你在家打证件照：一张人像照 → 自动裁成一寸/二寸 → 按 5 寸/6 寸相纸排好版，300dpi 直接打印，不用跑照相馆。</p>
+</p>
 
-一个开源的**照片处理技能**（Skill），给 AI Agent（豆包工作等支持 Skills 的运行时）提供四类照片处理能力，主打 **在家自己打证件照**：一张人像照 → 自动裁切成证件照规格 → 按 5 寸/6 寸相纸排成一张可打印图（300dpi），打印后直接裁剪，不用跑照相馆。
+<p align="center">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-green" alt="License: MIT"></a>
+  <img src="https://img.shields.io/badge/Python-3.x-blue" alt="Python 3">
+  <img src="https://img.shields.io/badge/type-Agent%20Skill-orange" alt="Agent Skill">
+  <img src="https://img.shields.io/badge/platform-macOS%20%2F%20Windows-lightgrey" alt="macOS / Windows">
+</p>
+
+<p align="center">
+  <a href="#预览">预览</a> · <a href="#功能一览">功能</a> · <a href="#安装">安装</a> · <a href="#首次使用引导">首次使用引导</a> · <a href="#局限limitations">局限</a> · <a href="#许可证">License</a>
+</p>
+
+---
+
+## 预览
+
+一张人像照进来，一张可打印的相纸出去：
+
+![证件照排版效果](docs/preview-id-photo.png)
+
+<sub>一寸证件照 × 5 寸相纸（3×3 = 9 张，300dpi）。上图是脚本的真实输出，不是示意图。</sub>
+
+---
+
+一个开源的**照片处理技能**（Skill），给 AI Agent（豆包工作等支持 Skills 的运行时）提供四类照片处理能力：
 
 1. **证件照排版**（主打）—— 人像自动裁切成证件照规格（一寸/二寸/大一寸），按 5 寸/6 寸相纸排版成一张可打印图，300dpi 打印标准
 2. **照片排版 PDF** —— 多张照片按每页张数自动排成网格，导出 A4 等页面 PDF
@@ -22,6 +48,8 @@ photo-toolbox/
 │   ├── layout_photos.py          # 功能二：照片排版 PDF
 │   ├── layout_photos_word.py     # 功能三：照片排版 Word（带备注行）
 │   └── add_watermark.py          # 功能四：照片加水印
+├── docs/
+│   └── preview-id-photo.png      # README 首屏预览图（脚本真实输出）
 ├── references/                   # 反馈与版本记录
 └── test-prompts.json             # 测试基准（17 个典型用例）
 ```

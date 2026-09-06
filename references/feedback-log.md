@@ -28,6 +28,7 @@
 | v2.0 | 2026-09-04 | 开源化改造：新增首次使用引导流程（Agent 连问 PDF 排版/Word 排版/水印偏好，存 user-preferences.json）；删除个性化水印示例；新增 README/LICENSE/.gitignore/user-preferences.json.example；测试用例扩到15个 |
 | v2.1 | 2026-09-04 | 新增功能四：证件照排版（layout_id_photo.py，一寸/二寸自动裁切+5寸/6寸相纸排版打印，300dpi）；引导新增证件照偏好；测试用例扩到17个 |
 | v2.2 | 2026-09-06 | 开源传播优化：证件照提升为主打功能并放到首屏；README 新增"局限（Limitations）"章节；SKILL.md 描述补充证件照触发词 |
+| v2.3 | 2026-09-06 | README 封面升级（参考 readme-guidelines 模板）：居中 header + badges + 导航 + 首屏预览图（docs/preview-id-photo.png，脚本真实输出） |
 
 ## 反馈记录
 
